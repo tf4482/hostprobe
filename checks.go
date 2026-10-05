@@ -35,7 +35,7 @@ type CheckedHost struct {
 }
 
 // Run all checks with separate ping and SSH limits; order is preserved
-func checkHosts(ctx context.Context, records []HostRecord, settings Settings) []CheckedHost {
+func checkHosts(ctx context.Context, records []HostRecord, settings Settings, bar *progress) []CheckedHost {
 	pingLimit := make(chan struct{}, settings.PingConcurrency)
 	sshLimit := make(chan struct{}, settings.SSHConcurrency)
 	checked := make([]CheckedHost, len(records))
@@ -51,6 +51,7 @@ func checkHosts(ctx context.Context, records []HostRecord, settings Settings) []
 			case limit <- struct{}{}:
 				defer func() { <-limit }()
 				checked[index].Result = checkHost(ctx, record, timeout)
+				bar.step(record.Name)
 			case <-ctx.Done():
 			}
 		})

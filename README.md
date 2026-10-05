@@ -17,6 +17,7 @@ writes `status` and `last_check` back, prints the results, and exits. Ships as a
 - 🔁 **Failover**: up to three backup databases, tried in order when the primary is unreachable.
 - 📝 **First run**: creates a user-only config template.
 - 🌈 **Output**: colored with emojis; plain when redirected or `NO_COLOR` is set.
+- 📊 **Progress**: a live progress bar on terminals; no control characters in logs.
 
 ## 📦 Install
 

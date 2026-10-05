@@ -248,7 +248,7 @@ esac`)
 	}
 	settings := Settings{PingConcurrency: 2, PingTimeout: 300 * time.Millisecond, SSHConcurrency: 4, SSHTimeout: 300 * time.Millisecond}
 	started := time.Now()
-	checked := checkHosts(context.Background(), records, settings)
+	checked := checkHosts(context.Background(), records, settings, &progress{})
 
 	expected := []CheckResult{
 		{stateOnline, "echo reply received"},
@@ -273,7 +273,7 @@ esac`)
 func TestMissingToolIsOperationalError(t *testing.T) {
 	t.Setenv("PATH", t.TempDir())
 	settings := Settings{PingConcurrency: 1, PingTimeout: time.Second, SSHConcurrency: 1, SSHTimeout: time.Second}
-	checked := checkHosts(context.Background(), []HostRecord{{Method: "ping", IP: "192.0.2.1", IPVersion: 4}}, settings)
+	checked := checkHosts(context.Background(), []HostRecord{{Method: "ping", IP: "192.0.2.1", IPVersion: 4}}, settings, &progress{})
 	if checked[0].Result != (CheckResult{stateError, "missing local dependency: ping"}) {
 		t.Fatalf("unexpected result: %+v", checked[0].Result)
 	}

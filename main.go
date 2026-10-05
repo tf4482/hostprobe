@@ -142,7 +142,10 @@ func probe(ctx context.Context, out printer) int {
 		valid = append(valid, record)
 	}
 
-	checked := checkHosts(ctx, valid, config.Settings)
+	out.line("🔎", fmt.Sprintf("Checking %d hosts", len(valid)), "36")
+	bar := out.progress("Checking", len(valid))
+	checked := checkHosts(ctx, valid, config.Settings, bar)
+	bar.done()
 	if ctx.Err() != nil {
 		return 130
 	}
