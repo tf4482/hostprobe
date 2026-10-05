@@ -7,3 +7,4 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/) and [
 ### Added
 
 - Go port of the Python CLI, built as a single static Linux binary
+- Example configuration (`config.yml.example`) for database and check settings

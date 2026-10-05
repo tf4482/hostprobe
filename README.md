@@ -53,8 +53,8 @@ The first existing file is used, without merging:
 1. `config.yml` beside the executable
 2. `~/.config/hostprobe/config.yml`
 
-If neither exists, the second one is created with dummy values and the run exits `1`. See
-[`config.example.yml`](config.example.yml):
+If neither exists, the second one is created with dummy values and the run exits `1`. Copy
+[`config.yml.example`](config.yml.example) to one of these locations and replace `CHANGE_ME`:
 
 | Setting | Description |
 | --- | --- |

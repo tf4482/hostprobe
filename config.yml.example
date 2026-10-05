@@ -1,12 +1,11 @@
 database:
-  # Shared connection settings; reuse across projects if the role has required table permissions.
+  # Primary PostgreSQL connection
   host: "127.0.0.1"
   port: 5432
   name: "monitoring"
   user: "monitoring"
   password: "CHANGE_ME"
-  # Optional ordered failover targets; at most three.
-  # Each needs host, port, name, user, and password; all use public.hosts.
+  # Optional failover targets, up to three, with the same connection keys
   backups: []
 
 settings:
