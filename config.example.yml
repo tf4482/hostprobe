@@ -1,0 +1,16 @@
+database:
+  # Shared connection settings; reuse across projects if the role has required table permissions.
+  host: "127.0.0.1"
+  port: 5432
+  name: "monitoring"
+  user: "monitoring"
+  password: "CHANGE_ME"
+  # Optional ordered failover targets; at most three.
+  # Each needs host, port, name, user, and password; all use public.hosts.
+  backups: []
+
+settings:
+  ping_concurrency: 16
+  ping_timeout_seconds: 1
+  ssh_concurrency: 8
+  ssh_timeout_seconds: 2
